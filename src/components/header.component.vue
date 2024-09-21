@@ -48,5 +48,10 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 0;
+}
+
+.p-menubar{
+  border-radius: 0;
 }
 </style>
