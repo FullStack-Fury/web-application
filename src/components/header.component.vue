@@ -38,7 +38,7 @@ export default defineComponent({
 
 .card {
   width: 100%;
-  padding: 0px;
+  padding: 0;
   position: fixed;
   top: 0;
   left: 0;
