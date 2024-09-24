@@ -28,7 +28,20 @@ export default {
 </script>
 
 <template>
-
+  <pv-dialog v-bind:visible="visible" :modal="true" :style="getDialogStyle()" class="p-fluid" :header="entityName">
+    <template #header>
+      <div class="flex justify-content-start">
+        <div>{{ getHeaderTitle() }}</div>
+      </div>
+    </template>
+    <slot name="content"></slot>
+    <template #footer>
+      <div class="flex justify-content-end">
+        <pv-button type="button" :label="getSubmitLabel()" class="p-button-text" icon="pi pi-check" @click="onSave"/>
+        <pv-button type="button" label="Cancel" severity="secondary" class="p-button-text" icon="pi pi-times" @click="onCancel"/>
+      </div>
+    </template>
+  </pv-dialog>
 </template>
 
 <style scoped>
