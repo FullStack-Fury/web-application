@@ -1,0 +1,18 @@
+{
+  "materials": [
+    {
+      "id": 1,
+      "name": "oro",
+      "quantity": 23,
+      "quantityStatus": "Medium Stock",
+      "provider": "gem z"
+    },
+    {
+      "id": 2,
+      "name": "platino",
+      "quantity": 35,
+      "quantityStatus": "Stock",
+      "provider": "luxury"
+    }
+  ]
+}
