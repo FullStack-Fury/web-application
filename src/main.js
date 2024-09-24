@@ -12,15 +12,17 @@ import 'primeflex/primeflex.css'
 
 // PrimeIcons
 import 'primeicons/primeicons.css'
-import ToastService from "primevue/toastservice";
-import DialogService from "primevue/dialogservice";
-import ConfirmationService from "primevue/confirmationservice";
+
+
+
+
+import router from "./router/index.js";
 import Button from "primevue/button";
 import Card from "primevue/card";
-import ConfirmDialog from "primevue/confirmdialog";
 import Column from "primevue/column";
-import DataTable from "primevue/datatable";
+import ConfirmDialog from "primevue/confirmdialog";
 import Checkbox from "primevue/checkbox";
+import DataTable from "primevue/datatable";
 import Dialog from "primevue/dialog";
 import Select from "primevue/select";
 import SelectButton from "primevue/selectbutton";
@@ -28,20 +30,21 @@ import FileUpload from "primevue/fileupload";
 import FloatLabel from "primevue/floatlabel";
 import IconField from "primevue/iconfield";
 import InputIcon from "primevue/inputicon";
-import InputNumber from "primevue/inputnumber";
 import InputText from "primevue/inputtext";
-import Menu from "primevue/menu";
+import InputNumber from "primevue/inputnumber";
 import Rating from "primevue/rating";
+import Menu from "primevue/menu";
 import Row from "primevue/row";
 import Drawer from "primevue/drawer";
 import Tag from "primevue/tag";
 import Textarea from "primevue/textarea";
 import Toolbar from "primevue/toolbar";
 import Toast from "primevue/toast";
-
-
-import router from "./router/index.js";
 import CascadeSelect from "primevue/cascadeselect";
+import DialogService from "primevue/dialogservice";
+import ConfirmationService from "primevue/confirmationservice";
+import ToastService from "primevue/toastservice";
+
 
 // Create app instance
 const app = createApp(App);
