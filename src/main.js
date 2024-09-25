@@ -44,6 +44,7 @@ import CascadeSelect from "primevue/cascadeselect";
 import DialogService from "primevue/dialogservice";
 import ConfirmationService from "primevue/confirmationservice";
 import ToastService from "primevue/toastservice";
+import MultiSelect from "primevue/multiselect";
 
 
 // Create app instance
@@ -85,6 +86,7 @@ app.component('pv-button', Button)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
-    .component('pv-cascade-select', CascadeSelect);
+    .component('pv-cascade-select', CascadeSelect)
+    .component('pv-multi-select', MultiSelect)
 
 app.mount('#app')
