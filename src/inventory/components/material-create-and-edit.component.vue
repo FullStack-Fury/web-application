@@ -1,6 +1,9 @@
 <script>
 import CreateAndEdit from "../../shared/components/create-and-edit.component.vue";
 
+
+
+
 export default {
   name: "material-create-and-edit-dialog",
   components: { CreateAndEdit },
@@ -10,6 +13,7 @@ export default {
   },
   data() {
     return {
+      date: null,
       selectedMaterialStone: null,
       materials: [
         {
@@ -95,6 +99,8 @@ export default {
             <pv-input-text id="provider" v-model="item.provider"
                            :class="{ 'p-invalid': submitted && !item.provider }"/>
           </pv-float-label>
+          <pv-date-picker v-model="date" />
+          <pv-textarea/>
         </div>
       </div>
     </template>
