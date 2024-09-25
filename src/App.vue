@@ -9,7 +9,8 @@ export default {
     return {
       drawer: false,
       items: [
-        { label: 'Inventory', to: '/inventory/materials'}
+        {label: "Management", to: '/management'},
+        {label: 'Inventory', to: '/inventory/materials'}
       ]
     }
   },
@@ -51,7 +52,7 @@ export default {
 
 <style scoped>
 
-.logo{
+.logo {
   width: 50px;
 }
 
