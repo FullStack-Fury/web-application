@@ -103,6 +103,13 @@ export default {
     //#endregion
   },
   //#region Lifecycle Hooks
+
+  watch: {
+    createAndEditDialogIsVisible(newVal) {
+      console.log('Dialog visibility changed:', newVal);
+    }
+  },
+
   created() {
     this.materialService = new MaterialService();
     this.materialService.getAll().then(response => {
