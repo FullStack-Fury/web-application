@@ -2,16 +2,23 @@
   "materials": [
     {
       "id": 1,
-      "name": "oro",
+      "name": "Agate",
       "quantity": 23,
       "quantityStatus": "Medium Stock",
       "provider": "gem z"
     },
     {
       "id": 2,
-      "name": "platino",
+      "name": "Emerald",
       "quantity": 35,
       "quantityStatus": "Stock",
+      "provider": "luxury"
+    },
+    {
+      "id": 3,
+      "name": "Diamond",
+      "quantity": 23,
+      "quantityStatus": "Medium Stock",
       "provider": "luxury"
     }
   ]
