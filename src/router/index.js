@@ -1,11 +1,11 @@
 import {createRouter, createWebHistory} from "vue-router";
-import MaterialManagementComponent from "../dashboard/pages/material-management.component.vue";
+import MaterialManagementComponent from "../inventory/pages/material-management.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: '/dashboard/materials',   name: 'materials', component: MaterialManagementComponent, meta: { title: 'Inventory Management'}},
-        { path: '/',                        redirect: '/dashboard/materials'}
+        { path: '/inventory/materials',   name: 'materials', component: MaterialManagementComponent, meta: { title: 'Inventory Management'}},
+        { path: '/',                        redirect: '/inventory/materials'}
     ]
 });
 

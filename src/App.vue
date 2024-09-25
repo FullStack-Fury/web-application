@@ -9,7 +9,7 @@ export default {
     return {
       drawer: false,
       items: [
-        { label: 'Inventory', to: '/dashboard/materials'}
+        { label: 'Inventory', to: '/inventory/materials'}
       ]
     }
   },
