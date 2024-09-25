@@ -3,17 +3,24 @@
     {
       "id": 1,
       "name": "Diamond",
-      "quantity": 5,
+      "quantity": 0,
       "quantityStatus": "Medium Stock",
       "provider": "luxury",
-      "quantityToUse": 1
+      "quantityToUse": 5
     },
     {
       "id": 2,
       "name": "Ruby",
-      "quantity": 21,
+      "quantity": 11,
       "quantityStatus": "Stock",
       "provider": "Luxu"
+    },
+    {
+      "id": 3,
+      "name": "Emerald",
+      "quantity": 10,
+      "quantityStatus": "Low Stock",
+      "provider": "luxu"
     }
   ],
   "products": [
@@ -26,7 +33,8 @@
           "materialId": 1,
           "quantity": 3
         }
-      ]
+      ],
+      "status": "pendient"
     },
     {
       "id": 5,
@@ -35,13 +43,14 @@
       "materials": [
         {
           "materialId": 2,
-          "quantity": 25
+          "quantity": 30
         },
         {
           "materialId": 1,
           "quantity": 15
         }
-      ]
+      ],
+      "status": "pendient"
     },
     {
       "id": 6,
@@ -51,6 +60,19 @@
         {
           "materialId": 1,
           "quantity": 1
+        }
+      ],
+      "status": "finish"
+    },
+    {
+      "id": 7,
+      "name": "anillo de diamante",
+      "employeeId": 1,
+      "status": "pendient",
+      "materials": [
+        {
+          "materialId": 1,
+          "quantity": 5
         }
       ]
     }
