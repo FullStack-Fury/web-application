@@ -67,7 +67,7 @@ export default {
 <template>
   <pv-toast/>
   <pv-confirm-dialog/>
-  <h3>Inventory {{ title.singular }}</h3>
+  <h3>{{ title.singular }}</h3>
 
   <!-- Toolbar section -->
   <pv-toolbar class="mb-4">
