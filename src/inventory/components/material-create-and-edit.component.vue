@@ -72,19 +72,19 @@ export default {
 
 <template>
   <create-and-edit :entity="item" :visible="visible" entity-name="Material"
-                   @cancelled="onCancelRequested" @saved="onSaveRequested">
+                   @canceled="onCancelRequested" @saved="onSaveRequested">
     <template #content>
       <div class="p-fluid">
         <div class="field mt-5">
-          <pv-float-label class="field-gap">
-            <label for="material">Material</label>
+          <div style="margin-bottom: 30px">
+            <label for="material" class="flex flex-col gap-2" id="material-label">Material</label>
             <pv-cascade-select id="material" v-model="selectedMaterialStone"
                                :options="materials" optionLabel="name" optionGroupLabel="name"
                                :optionGroupChildren="['stones']" style="min-width: 14rem"
                                placeholder="Select a Material"
                                @change="item.name = selectedMaterialStone.name"
-                               :class="{ 'p-invalid': submitted && !item.name }"/>
-          </pv-float-label>
+                               :class="{ 'p-invalid': submitted && !item.name }" />
+          </div>
           <pv-float-label class="field-gap">
             <label for="quantity">Quantity</label>
             <pv-input-number id="quantity" v-model="item.quantity"
@@ -104,5 +104,11 @@ export default {
 <style scoped>
 .field-gap {
   margin-bottom: 30px;
+}
+
+#material-label{
+  margin:0 0 5px 10px;
+  font-size: 12px;
+  color: rgb(161, 161, 170);
 }
 </style>
