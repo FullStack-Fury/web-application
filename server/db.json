@@ -3,16 +3,70 @@
     {
       "id": 1,
       "name": "Diamond",
-      "quantity": 23,
+      "quantity": 5,
       "quantityStatus": "Medium Stock",
-      "provider": "luxury"
+      "provider": "luxury",
+      "quantityToUse": 1
     },
     {
       "id": 2,
       "name": "Ruby",
-      "quantity": 23,
-      "quantityStatus": "Medium Stock",
+      "quantity": 21,
+      "quantityStatus": "Stock",
       "provider": "Luxu"
+    }
+  ],
+  "products": [
+    {
+      "id": 4,
+      "name": "anillo de diamante",
+      "employeeId": 2,
+      "materials": [
+        {
+          "materialId": 1,
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "pulsera de ruby",
+      "employeeId": 3,
+      "materials": [
+        {
+          "materialId": 2,
+          "quantity": 25
+        },
+        {
+          "materialId": 1,
+          "quantity": 15
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "anillo de diamante",
+      "employeeId": 2,
+      "materials": [
+        {
+          "materialId": 1,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Juan Pérez"
+    },
+    {
+      "id": 2,
+      "name": "María López"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Gómez"
     }
   ]
 }
