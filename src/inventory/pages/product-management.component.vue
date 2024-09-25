@@ -51,22 +51,17 @@ export default {
       this.addProductDialogIsVisible = true;
     },
     onEditItem(item) {
-      // Clonar el producto para evitar mutar el original
       this.product = JSON.parse(JSON.stringify(item));
       this.addProductDialogIsVisible = true;
     },
     onDeleteItem(item) {
-      // Eliminar el producto y devolver las cantidades de materiales al inventario
       this.productService.delete(item.id)
           .then(() => {
-            // Devolver cantidades al inventario
             item.materials.forEach(pm => {
               const materialIndex = this.findMaterialIndexById(pm.materialId);
               this.materials[materialIndex].quantity += pm.quantity;
-              // Actualizar el material en el backend
               this.materialService.update(pm.materialId, this.materials[materialIndex]);
             });
-            // Remover el producto de la lista
             const index = this.findProductIndexById(item.id);
             this.products.splice(index, 1);
             this.notifySuccessfulAction(`Eliminated Product: ${item.name}`);
@@ -74,12 +69,10 @@ export default {
           .catch(error => console.error(error));
     },
     onSaveRequested(productData, originalMaterials) {
-      // Asegurarnos de que productData contiene employeeId
       if (!productData.employeeId) {
         productData.employeeId = this.product.employeeId;
       }
 
-      // Actualizar las cantidades de materiales
       const materialUpdates = productData.materials.map(material => {
         const materialIndex = this.findMaterialIndexById(material.materialId);
         const originalQuantityUsed = this.getOriginalQuantityUsed(material, originalMaterials);
@@ -91,7 +84,6 @@ export default {
       Promise.all(materialUpdates)
           .then(() => {
             if (productData.id) {
-              // Actualizar el producto existente
               this.productService.update(productData.id, productData)
                   .then(response => {
                     const index = this.findProductIndexById(productData.id);
@@ -103,7 +95,6 @@ export default {
                         material: material,
                       };
                     });
-                    // Asociar el empleado al producto actualizado
                     updatedProduct.employee = this.employees.find(e => e.id === updatedProduct.employeeId);
                     this.products.splice(index, 1, updatedProduct);
                     this.notifySuccessfulAction(`Updated Product: ${updatedProduct.name}`);
@@ -111,7 +102,6 @@ export default {
                   })
                   .catch(error => console.error(error));
             } else {
-              // Crear un nuevo producto
               this.productService.create(productData)
                   .then(response => {
                     const product = response.data;
@@ -122,7 +112,6 @@ export default {
                         material: material,
                       };
                     });
-                    // Asociar el empleado al nuevo producto
                     product.employee = this.employees.find(e => e.id === product.employeeId);
                     this.products.push(product);
                     this.notifySuccessfulAction(`Added Product: ${product.name}`);
@@ -143,7 +132,7 @@ export default {
       this.materialService.getAll()
           .then(response => {
             this.materials = response.data.map(material => new Material(material));
-            this.loadProducts(); // Cargar productos después de materiales
+            this.loadProducts();
           })
           .catch(error => console.error(error));
     },
@@ -151,7 +140,6 @@ export default {
       this.productService.getAll()
           .then(response => {
             this.products = response.data.map(product => {
-              // Mapear materiales para cada producto
               product.materials = product.materials.map(pm => {
                 const material = this.materials.find(m => m.id === pm.materialId);
                 return {
@@ -159,7 +147,6 @@ export default {
                   material: material,
                 };
               });
-              // Asociar empleado
               const employee = this.employees.find(e => e.id === product.employeeId);
               product.employee = employee ? employee : { name: 'Empleado no asignado' };
               return product;
@@ -221,6 +208,8 @@ export default {
         </pv-column>
         <!-- Nueva columna para el empleado -->
         <pv-column :sortable="true" field="employee.name" header="Employee" style="min-width: 12rem" />
+        <!-- Nueva columna para el estado -->
+        <pv-column :sortable="true" field="status" header="Status" style="min-width: 12rem" />
       </template>
     </data-manager>
 

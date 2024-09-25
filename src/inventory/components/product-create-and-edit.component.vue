@@ -4,6 +4,7 @@ import InputText from 'primevue/inputtext';
 import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
 import CascadeSelect from 'primevue/cascadeselect';
+import Dropdown from 'primevue/dropdown'; // Asegúrate de importar Dropdown
 
 export default {
   name: "product-create-and-edit-dialog",
@@ -13,6 +14,7 @@ export default {
     'pv-multi-select': MultiSelect,
     'pv-input-number': InputNumber,
     'pv-cascade-select': CascadeSelect,
+    'pv-dropdown': Dropdown, // Asegúrate de registrar el componente
   },
   props: {
     visible: Boolean,
@@ -26,6 +28,12 @@ export default {
       selectedMaterials: [],
       originalMaterials: [],
       selectedEmployee: null,
+      selectedStatus: null, // Agrega la variable para almacenar el estado
+      statusOptions: [
+        { label: "Pendiente", value: "pendient" },
+        { label: "En Progreso", value: "inprogress" },
+        { label: "Finalizado", value: "finish" },
+      ],
     };
   },
   computed: {
@@ -65,11 +73,14 @@ export default {
           this.originalMaterials = JSON.parse(JSON.stringify(this.productData.materials));
           // Asignar empleado seleccionado
           this.selectedEmployee = this.employees.find(e => e.id === this.productData.employeeId) || null;
+          // Asignar estado seleccionado
+          this.selectedStatus = this.productData.status || null; // Inicializar el estado
         } else {
           this.productData = {};
           this.selectedMaterials = [];
           this.originalMaterials = [];
           this.selectedEmployee = null;
+          this.selectedStatus = null; // Resetear el estado
         }
       },
     },
@@ -98,11 +109,11 @@ export default {
       }
     },
     onSaveRequested() {
-      if (!this.productData.name || this.selectedMaterials.length === 0 || !this.selectedEmployee) {
+      if (!this.productData.name || this.selectedMaterials.length === 0 || !this.selectedEmployee || !this.selectedStatus) {
         this.$toast.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Please enter a name, select materials, and assign an employee',
+          detail: 'Please enter a name, select materials, assign an employee, and select a status',
           life: 3000
         });
         return;
@@ -131,6 +142,7 @@ export default {
         id: this.productData.id,
         name: this.productData.name,
         employeeId: this.selectedEmployee.id,
+        status: this.selectedStatus, // Solo se guarda el valor del estado
         materials: this.selectedMaterials.map(material => ({
           materialId: material.id,
           quantity: material.quantityToUse,
@@ -199,6 +211,17 @@ export default {
               :optionGroupChildren="['employees']"
               placeholder="Select an employee"
               @change="onEmployeeChange"
+          />
+        </div>
+        <div class="field">
+          <label for="status">Status</label>
+          <pv-dropdown
+              id="status"
+              v-model="selectedStatus"
+              :options="statusOptions"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select a status"
           />
         </div>
       </div>

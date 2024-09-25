@@ -10,7 +10,8 @@ export default {
       drawer: false,
       items: [
         {label: "Management", to: '/management'},
-        {label: 'Inventory', to: '/inventory/materials'}
+        {label: 'Inventory', to: '/inventory/materials'},
+        {label: 'Dashboard', to: '/dashboard'}
       ]
     }
   },
