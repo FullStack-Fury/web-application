@@ -1,26 +1,49 @@
 <script>
 import CreateAndEditDialog from "../../shared/components/create-and-edit.component.vue";
+import InputText from 'primevue/inputtext';
+import MultiSelect from 'primevue/multiselect';
+import InputNumber from 'primevue/inputnumber';
+import CascadeSelect from 'primevue/cascadeselect';
 
 export default {
   name: "product-create-and-edit-dialog",
   components: {
     CreateAndEditDialog,
+    'pv-input-text': InputText,
+    'pv-multi-select': MultiSelect,
+    'pv-input-number': InputNumber,
+    'pv-cascade-select': CascadeSelect,
   },
   props: {
     visible: Boolean,
     product: Object,
     materials: Array,
+    employees: Array,
   },
   data() {
     return {
       productData: {},
       selectedMaterials: [],
       originalMaterials: [],
+      selectedEmployee: null,
     };
   },
   computed: {
     dialogTitle() {
       return this.productData.id ? 'Edit Product' : 'New Product';
+    },
+    employeeOptions() {
+      const departments = {};
+      this.employees.forEach(emp => {
+        if (!departments[emp.department]) {
+          departments[emp.department] = {
+            label: emp.department,
+            employees: [],
+          };
+        }
+        departments[emp.department].employees.push(emp);
+      });
+      return Object.values(departments);
     },
   },
   watch: {
@@ -40,10 +63,13 @@ export default {
           });
           // Guardar los materiales originales para cálculos posteriores
           this.originalMaterials = JSON.parse(JSON.stringify(this.productData.materials));
+          // Asignar empleado seleccionado
+          this.selectedEmployee = this.employees.find(e => e.id === this.productData.employeeId) || null;
         } else {
           this.productData = {};
           this.selectedMaterials = [];
           this.originalMaterials = [];
+          this.selectedEmployee = null;
         }
       },
     },
@@ -64,12 +90,19 @@ export default {
       }
       return 0;
     },
+    onEmployeeChange() {
+      if (this.selectedEmployee) {
+        this.productData.employeeId = this.selectedEmployee.id;
+      } else {
+        this.productData.employeeId = null;
+      }
+    },
     onSaveRequested() {
-      if (!this.productData.name || this.selectedMaterials.length === 0) {
+      if (!this.productData.name || this.selectedMaterials.length === 0 || !this.selectedEmployee) {
         this.$toast.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Please enter a name and select materials',
+          detail: 'Please enter a name, select materials, and assign an employee',
           life: 3000
         });
         return;
@@ -97,6 +130,7 @@ export default {
       const productData = {
         id: this.productData.id,
         name: this.productData.name,
+        employeeId: this.selectedEmployee.id,
         materials: this.selectedMaterials.map(material => ({
           materialId: material.id,
           quantity: material.quantityToUse,
@@ -153,6 +187,19 @@ export default {
               style="width: 100%"
           />
           <small>Available Quantity: {{ material.quantity + getOriginalQuantityUsed(material) }}</small>
+        </div>
+        <div class="field">
+          <label for="employee">Employee</label>
+          <pv-cascade-select
+              id="employee"
+              v-model="selectedEmployee"
+              :options="employeeOptions"
+              optionLabel="name"
+              optionGroupLabel="department"
+              :optionGroupChildren="['employees']"
+              placeholder="Select an employee"
+              @change="onEmployeeChange"
+          />
         </div>
       </div>
     </template>

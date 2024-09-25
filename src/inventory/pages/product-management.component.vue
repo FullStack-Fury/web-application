@@ -3,6 +3,8 @@ import { Product } from "../model/product.entity.js";
 import { Material } from "../model/material.entity.js";
 import { ProductService } from "../services/product.service.js";
 import { MaterialService } from "../services/material.service.js";
+import { Employee } from "../model/employee.entity.js";
+import { EmployeeService } from "../services/employee.service.js";
 import DataManager from "../../shared/components/data-manager.component.vue";
 import ProductCreateAndEditDialog from "../components/product-create-and-edit.component.vue";
 
@@ -17,8 +19,10 @@ export default {
       title: { singular: 'Product', plural: 'Products' },
       materials: [],
       products: [],
+      employees: [],
       materialService: null,
       productService: null,
+      employeeService: null,
       selectedProducts: [],
       product: new Product(),
       addProductDialogIsVisible: false,
@@ -70,6 +74,11 @@ export default {
           .catch(error => console.error(error));
     },
     onSaveRequested(productData, originalMaterials) {
+      // Asegurarnos de que productData contiene employeeId
+      if (!productData.employeeId) {
+        productData.employeeId = this.product.employeeId;
+      }
+
       // Actualizar las cantidades de materiales
       const materialUpdates = productData.materials.map(material => {
         const materialIndex = this.findMaterialIndexById(material.materialId);
@@ -94,6 +103,8 @@ export default {
                         material: material,
                       };
                     });
+                    // Asociar el empleado al producto actualizado
+                    updatedProduct.employee = this.employees.find(e => e.id === updatedProduct.employeeId);
                     this.products.splice(index, 1, updatedProduct);
                     this.notifySuccessfulAction(`Updated Product: ${updatedProduct.name}`);
                     this.addProductDialogIsVisible = false;
@@ -111,6 +122,8 @@ export default {
                         material: material,
                       };
                     });
+                    // Asociar el empleado al nuevo producto
+                    product.employee = this.employees.find(e => e.id === product.employeeId);
                     this.products.push(product);
                     this.notifySuccessfulAction(`Added Product: ${product.name}`);
                     this.addProductDialogIsVisible = false;
@@ -146,8 +159,18 @@ export default {
                   material: material,
                 };
               });
+              // Asociar empleado
+              const employee = this.employees.find(e => e.id === product.employeeId);
+              product.employee = employee ? employee : { name: 'Empleado no asignado' };
               return product;
             });
+          })
+          .catch(error => console.error(error));
+    },
+    loadEmployees() {
+      this.employeeService.getAll()
+          .then(response => {
+            this.employees = response.data.map(employee => new Employee(employee));
           })
           .catch(error => console.error(error));
     },
@@ -164,7 +187,9 @@ export default {
   created() {
     this.materialService = new MaterialService();
     this.productService = new ProductService();
+    this.employeeService = new EmployeeService();
     this.loadMaterials();
+    this.loadEmployees();
     this.initFilters();
   },
 };
@@ -194,6 +219,8 @@ export default {
             </ul>
           </template>
         </pv-column>
+        <!-- Nueva columna para el empleado -->
+        <pv-column :sortable="true" field="employee.name" header="Employee" style="min-width: 12rem" />
       </template>
     </data-manager>
 
@@ -202,6 +229,7 @@ export default {
         :visible="addProductDialogIsVisible"
         :product="product"
         :materials="materials"
+        :employees="employees"
         @canceled="onCancelRequested"
         @saved="onSaveRequested"
     />
