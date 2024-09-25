@@ -9,7 +9,7 @@ export default {
     return {
       drawer: false,
       items: [
-        { label: 'Materials', to: '/dashboard/materials'}
+        { label: 'Inventory', to: '/dashboard/materials'}
       ]
     }
   },
@@ -29,7 +29,7 @@ export default {
     <pv-toolbar class="bg-primary">
       <template #start>
         <pv-button class="p-button-text" icon="pi pi-bars" @click="toggleDrawer"/>
-        <h2>Gemz Dahsboard</h2>
+        <img class="logo" src="/logo-color.png" alt="logo gem z">
       </template>
       <template #center>
         <div class="flex-column">
@@ -51,5 +51,8 @@ export default {
 
 <style scoped>
 
+.logo{
+  width: 50px;
+}
 
 </style>
