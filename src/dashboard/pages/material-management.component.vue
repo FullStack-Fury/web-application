@@ -9,7 +9,7 @@ export default {
   components: {MaterialCreateAndEditDialog, DataManager},
   data() {
     return {
-      title: { singular: 'Item', plural: 'Items' },
+      title: { singular: 'Material', plural: 'Materials' },
       materials: [],
       material: new Material({}),
       selectedMaterials: [],
