@@ -182,7 +182,7 @@ export default {
               @change="onMaterialsChange"
           />
         </div>
-        <div class="field" v-for="(material, index) in selectedMaterials" :key="material.id">
+        <div class="field" v-for="(material) in selectedMaterials" :key="material.id">
           <label :for="'quantity-' + material.id">Quantity for {{ material.name }}</label>
           <pv-input-number
               :id="'quantity-' + material.id"
