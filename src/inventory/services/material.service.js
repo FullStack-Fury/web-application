@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
 export class MaterialService {
-    resourceEndpoint = '/materials';
+    resourceEndpoint = 'https://fullstack-fury.free.beeceptor.com/api/v1/materials';
 
     getAll() {
         console.log(http.defaults.baseURL);
