@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 import MaterialManagementComponent from "../inventory/pages/material-management.component.vue";
-import productManagement from "../inventory/pages/product-management.component.vue";
-import DashboardManagement from "../inventory/pages/dashboard-management.vue";
+import productManagement from "../management/pages/product-management.component.vue";
+import DashboardManagement from "../public/components/dashboard-management.vue";
 
 const router = createRouter({
     history: createWebHistory(),
