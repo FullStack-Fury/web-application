@@ -4,7 +4,7 @@ import InputText from 'primevue/inputtext';
 import MultiSelect from 'primevue/multiselect';
 import InputNumber from 'primevue/inputnumber';
 import CascadeSelect from 'primevue/cascadeselect';
-import Dropdown from 'primevue/dropdown'; // Asegúrate de importar Dropdown
+import Dropdown from 'primevue/dropdown';
 
 export default {
   name: "product-create-and-edit-dialog",
@@ -14,7 +14,7 @@ export default {
     'pv-multi-select': MultiSelect,
     'pv-input-number': InputNumber,
     'pv-cascade-select': CascadeSelect,
-    'pv-dropdown': Dropdown, // Asegúrate de registrar el componente
+    'pv-dropdown': Dropdown,
   },
   props: {
     visible: Boolean,
@@ -28,7 +28,7 @@ export default {
       selectedMaterials: [],
       originalMaterials: [],
       selectedEmployee: null,
-      selectedStatus: null, // Agrega la variable para almacenar el estado
+      selectedStatus: null,
       statusOptions: [
         { label: "Pendiente", value: "pendient" },
         { label: "En Progreso", value: "inprogress" },
@@ -59,9 +59,7 @@ export default {
       immediate: true,
       handler(newVal) {
         if (newVal) {
-          // Clonar el producto para evitar mutaciones
           this.productData = JSON.parse(JSON.stringify(newVal));
-          // Preparar los materiales seleccionados
           this.selectedMaterials = this.productData.materials.map(pm => {
             const material = this.materials.find(m => m.id === pm.materialId);
             return {
@@ -69,25 +67,21 @@ export default {
               quantityToUse: pm.quantity,
             };
           });
-          // Guardar los materiales originales para cálculos posteriores
           this.originalMaterials = JSON.parse(JSON.stringify(this.productData.materials));
-          // Asignar empleado seleccionado
           this.selectedEmployee = this.employees.find(e => e.id === this.productData.employeeId) || null;
-          // Asignar estado seleccionado
-          this.selectedStatus = this.productData.status || null; // Inicializar el estado
+          this.selectedStatus = this.productData.status || null;
         } else {
           this.productData = {};
           this.selectedMaterials = [];
           this.originalMaterials = [];
           this.selectedEmployee = null;
-          this.selectedStatus = null; // Resetear el estado
+          this.selectedStatus = null;
         }
       },
     },
   },
   methods: {
     onMaterialsChange() {
-      // Si se agregan nuevos materiales, inicializar quantityToUse
       this.selectedMaterials.forEach(material => {
         if (typeof material.quantityToUse === 'undefined') {
           material.quantityToUse = 1;
@@ -137,12 +131,11 @@ export default {
         return;
       }
 
-      // Preparar los datos del producto
       const productData = {
         id: this.productData.id,
         name: this.productData.name,
-        employeeId: this.selectedEmployee.id,
-        status: this.selectedStatus, // Solo se guarda el valor del estado
+        employeeId: this.selectedEmployee ? this.selectedEmployee.id : null,
+        status: this.selectedStatus,
         materials: this.selectedMaterials.map(material => ({
           materialId: material.id,
           quantity: material.quantityToUse,
@@ -153,6 +146,9 @@ export default {
     },
     onCancelRequested() {
       this.$emit('canceled');
+    },
+    onDeleteSelectedItems() {
+      // Implementa la lógica de eliminación o elimina esta función si no es necesaria
     },
   },
 };

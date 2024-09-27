@@ -192,7 +192,6 @@ export default {
         @new-item-requested="onNewItem"
         @edit-item-requested="onEditItem"
         @delete-item-requested="onDeleteItem"
-        @delete-selected-items-requested="onDeleteSelectedItems"
     >
       <template #custom-columns>
         <pv-column :sortable="true" field="id" header="ID" style="min-width: 6rem" />
