@@ -26,6 +26,7 @@ export default {
       createAndEditDialogIsVisible: false,
       isEdit: false,
       submitted: false,
+      showNewAndDeleteButtons: false,
     };
   },
   methods: {
@@ -131,26 +132,27 @@ export default {
   <div class="w-full">
     <button @click="closeHistory">Close History</button>
     <data-manager :title="title"
-                  v-bind:items="histories"
-                  v-on:new-item-requested="onNewItem"
-                  v-on:edit-item-requested="onEditItem($event)"
-                  v-on:delete-item-requested="onDeleteItem($event)"
-                  v-on:delete-selected-items-requested="onDeleteSelectedItems($event)">
+                  :items="histories"
+                  :show-new-and-delete-buttons="showNewAndDeleteButtons"
+                  @new-item-requested="onNewItem"
+                  @edit-item-requested="onEditItem($event)"
+                  @delete-item-requested="onDeleteItem($event)"
+                  @delete-selected-items-requested="onDeleteSelectedItems($event)">
       <template #custom-columns>
         <pv-column :sortable="true" field="id" header="Id" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="quantity" header="Quantity" style="min-width: 12rem"/>
-        <pv-column :sortable="true" field="quantityStatus" header="Quantity Status" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="provider" header="Provider" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="date" header="Date" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="textareaContent" header="Textarea Content" style="min-width: 12rem"/>
       </template>
     </data-manager>
     <material-create-and-edit-dialog
         :edit="isEdit"
         :item="history"
         :visible="createAndEditDialogIsVisible"
-        v-on:cancel-requested="onCancelRequested"
-        v-on:save-requested="onSaveRequested($event)"/>
+        @cancel-requested="onCancelRequested"
+        @save-requested="onSaveRequested($event)"/>
   </div>
 </template>
 

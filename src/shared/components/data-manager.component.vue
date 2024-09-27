@@ -8,7 +8,8 @@ export default {
     items: { type: Array, required: true },
     title: { type: { singular: '', plural: ''}, required: true },
     dynamic: { type: Boolean, default: false },
-    columns: { type: Array, default: () => []}
+    columns: { type: Array, default: () => []},
+    showNewAndDeleteButtons: { type: Boolean, default: true }
   },
   data() {
     return {
@@ -72,8 +73,8 @@ export default {
   <!-- Toolbar section -->
   <pv-toolbar class="mb-4">
     <template #start>
-      <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
-      <pv-button :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete" severity="danger"
+      <pv-button v-if="showNewAndDeleteButtons" class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+      <pv-button v-if="showNewAndDeleteButtons" :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete" severity="danger"
                  @click="confirmDeleteSelected"/>
     </template>
     <template #end>

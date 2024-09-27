@@ -50,6 +50,20 @@
       "quantity": 10,
       "quantityStatus": "Low Stock",
       "provider": "GemZ"
+    },
+    {
+      "id": 8,
+      "name": "Emerald",
+      "quantity": 77,
+      "quantityStatus": "Stock",
+      "provider": "VICENTE"
+    },
+    {
+      "id": 9,
+      "name": "Emerald",
+      "quantity": 99,
+      "quantityStatus": "Stock",
+      "provider": "andres"
     }
   ],
   "products": [
@@ -118,15 +132,6 @@
   ],
   "item-history": [
     {
-      "id": 1,
-      "name": "Diamond",
-      "quantity": 10,
-      "quantityStatus": "Stock",
-      "provider": "Provider A",
-      "date": "2023-10-01",
-      "textareaContent": "Initial stock"
-    },
-    {
       "id": 2,
       "name": "Emerald",
       "quantity": 5,
@@ -154,31 +159,40 @@
       "id": 4
     },
     {
-      "name": "Agate",
-      "quantity": 8,
-      "quantityStatus": "Low Stock",
-      "provider": "YASSER",
-      "date": "2024-09-30T05:00:00.000Z",
-      "textareaContent": "prueba3",
+      "name": "Emerald",
+      "quantity": 77,
+      "quantityStatus": "Stock",
+      "provider": "VICENTE",
+      "date": "2024-09-26T05:00:00.000Z",
+      "textareaContent": "PRUEBA VICENTE",
       "id": 5
     },
     {
       "name": "Emerald",
       "quantity": 77,
       "quantityStatus": "Stock",
-      "provider": "dfgdgdf",
-      "date": "2024-09-22T05:00:00.000Z",
-      "textareaContent": "gdgdgd",
+      "provider": "VICENTE",
+      "date": "2024-09-26T05:00:00.000Z",
+      "textareaContent": "PRUEBA VICENTE",
       "id": 6
     },
     {
-      "name": "Malachite",
-      "quantity": 10,
-      "quantityStatus": "Low Stock",
-      "provider": "GemZ",
+      "name": "Agate",
+      "quantity": 55,
+      "quantityStatus": "Stock",
+      "provider": "gg",
       "date": "2024-09-30T05:00:00.000Z",
-      "textareaContent": "10 gramos de malachita",
-      "id": 7
+      "textareaContent": "ffff",
+      "id": 8
+    },
+    {
+      "name": "Emerald",
+      "quantity": 99,
+      "quantityStatus": "Stock",
+      "provider": "andres",
+      "date": "2024-09-28T05:00:00.000Z",
+      "textareaContent": "prueba prueba preueba",
+      "id": 9
     }
   ]
 }
