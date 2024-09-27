@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
 export class ProductService {
-    resourceEndpoint = 'products';
+    resourceEndpoint = 'http://localhost:3000/products';
 
     getAll() {
         return http.get(this.resourceEndpoint);
