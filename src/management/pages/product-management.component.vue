@@ -1,8 +1,8 @@
 <script>
 import { Product } from "../model/product.entity.js";
-import { Material } from "../model/material.entity.js";
+import { Material } from "../../inventory/model/material.entity.js";
 import { ProductService } from "../services/product.service.js";
-import { MaterialService } from "../services/material.service.js";
+import { MaterialService } from "../../inventory/services/material.service.js";
 import { Employee } from "../model/employee.entity.js";
 import { EmployeeService } from "../services/employee.service.js";
 import DataManager from "../../shared/components/data-manager.component.vue";

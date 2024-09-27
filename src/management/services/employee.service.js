@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
 export class EmployeeService {
-    resourceEndpoint = 'https://fullstack-fury.free.beeceptor.com/api/v1/employees';
+    resourceEndpoint = 'employees';
 
     getAll() {
         return http.get(this.resourceEndpoint);
