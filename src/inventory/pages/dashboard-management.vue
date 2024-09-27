@@ -85,12 +85,23 @@ const getEmployeeName = (id) => {
   return employee ? employee.name : 'No employee assigned';
 };
 
-// Función para cargar los productos desde la db.json
+// Función para cargar los productos desde la API pública
 const fetchProducts = async () => {
   try {
-    const response = await fetch('http://localhost:3000/products'); // Asegúrate de que la URL sea correcta
+    const response = await fetch('https://my-json-server.typicode.com/FullStack-Fury/Json-placeholder/products');
     if (response.ok) {
-      products.value = await response.json();
+      let data = await response.json();
+      // Mapeo de los estados de los productos si es necesario
+      products.value = data.map(product => {
+        if (product.status === 'pending') {
+          product.status = 'pendient';
+        } else if (product.status === 'in-progress') {
+          product.status = 'inprogress';
+        } else if (product.status === 'done') {
+          product.status = 'finish';
+        }
+        return product;
+      });
     } else {
       console.error('Error fetching products');
     }
@@ -99,10 +110,10 @@ const fetchProducts = async () => {
   }
 };
 
-// Función para cargar los materiales desde la db.json
+// Función para cargar los materiales desde la API pública
 const fetchMaterials = async () => {
   try {
-    const response = await fetch('http://localhost:3000/materials'); // Asegúrate de que la URL sea correcta
+    const response = await fetch('https://my-json-server.typicode.com/FullStack-Fury/Json-placeholder/materials');
     if (response.ok) {
       materials.value = await response.json();
     } else {
@@ -113,10 +124,10 @@ const fetchMaterials = async () => {
   }
 };
 
-// Función para cargar los empleados desde la db.json
+// Función para cargar los empleados desde la API pública
 const fetchEmployees = async () => {
   try {
-    const response = await fetch('http://localhost:3000/employees'); // Asegúrate de que la URL sea correcta
+    const response = await fetch('https://my-json-server.typicode.com/FullStack-Fury/Json-placeholder/employees');
     if (response.ok) {
       employees.value = await response.json();
     } else {
@@ -145,8 +156,8 @@ onMounted(() => {
 
 .cards-container {
   display: flex;
-  justify-content: center; /* Centra las tarjetas en el contenedor */
-  margin-bottom: 20px; /* Espacio entre las tarjetas y la tabla */
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -156,7 +167,7 @@ onMounted(() => {
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px; /* Espacio entre las tarjetas */
+  margin: 10px;
   font-size: 1.2rem;
   color: white;
 }
@@ -185,25 +196,25 @@ onMounted(() => {
 }
 
 .inprogress {
-  background-color: #f0ad4e; /* Color amarillo para 'In Progress' */
+  background-color: #f0ad4e;
 }
 
 .finish {
-  background-color: #5cb85c; /* Color verde para 'Finish' */
+  background-color: #5cb85c;
 }
 
 .pending {
-  background-color: #d9534f; /* Color rojo para 'Pending' */
+  background-color: #d9534f;
 }
 
 .details-table {
-  width: 100%; /* Ajusta el ancho de la tabla */
+  width: 100%;
 }
 
 table {
   margin-top: 20px;
   border-collapse: collapse;
-  width: 100%; /* Ajustar el ancho de la tabla */
+  width: 100%;
 }
 
 table th,
