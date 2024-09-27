@@ -1,52 +1,3 @@
-<template>
-  <div class="dashboard-container">
-    <div class="cards-container">
-      <div class="card inprogress">
-        <h2>In Progress</h2>
-        <p>{{ inProgressCount }} products</p>
-        <button @click="openDetails('inprogress')">View Details</button>
-      </div>
-      <div class="card finish">
-        <h2>Finish</h2>
-        <p>{{ finishCount }} products</p>
-        <button @click="openDetails('finish')">View Details</button>
-      </div>
-      <div class="card pending">
-        <h2>Pending</h2>
-        <p>{{ pendingCount }} products</p>
-        <button @click="openDetails('pendient')">View Details</button>
-      </div>
-    </div>
-
-    <!-- Tabla de detalles de productos -->
-    <div v-if="detailsVisible" class="details-table">
-      <h3>Products with Status: {{ selectedStatus }}</h3>
-      <table>
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Materials</th>
-          <th>Employee</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="product in filteredProducts" :key="product.id">
-          <td>{{ product.name }}</td>
-          <td>
-            <ul>
-              <li v-for="material in product.materials" :key="material.materialId">
-                Material: {{ getMaterialName(material.materialId) }} - Quantity: {{ material.quantity }}
-              </li>
-            </ul>
-          </td>
-          <td>{{ getEmployeeName(product.employeeId) }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 
@@ -146,49 +97,97 @@ onMounted(() => {
 });
 </script>
 
+<template>
+
+    <div class="cards-container">
+      <pv-card style="width: 25rem; overflow: hidden" class="card inprogress">
+        <template #title>In Progress</template>
+        <template #content>
+          <p class="m-0"> {{ inProgressCount }} products </p>
+        </template>
+        <template #footer>
+          <div class="flex gap-4 mt-1">
+            <pv-button label="View Details" text raised class="w-full" @click="openDetails('inprogress')"/>
+          </div>
+        </template>
+      </pv-card>
+
+      <pv-card style="width: 25rem; overflow: hidden" class="card finish">
+        <template #title>Finish</template>
+        <template #content>
+          <p class="m-0"> {{ finishCount }} products </p>
+        </template>
+        <template #footer>
+          <div class="flex gap-4 mt-1">
+            <pv-button label="View Details" text raised  class="w-full" @click="openDetails('finish')"/>
+          </div>
+        </template>
+      </pv-card>
+
+      <pv-card style="width: 25rem; overflow: hidden" class="card pending">
+        <template #title>Pending</template>
+        <template #content>
+          <p class="m-0"> {{ pendingCount }} products </p>
+        </template>
+        <template #footer>
+          <div class="flex gap-4 mt-1">
+            <pv-button label="View Details" text raised class="w-full" @click="openDetails('pendient')"/>
+          </div>
+        </template>
+      </pv-card>
+    </div>
+
+  <div class="dashboard-container">
+  <!-- Tabla de detalles de productos -->
+    <div v-if="detailsVisible" class="details-table">
+      <h3>Products with Status: {{ selectedStatus }}</h3>
+      <table>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Materials</th>
+          <th>Employee</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="product in filteredProducts" :key="product.id">
+          <td>{{ product.name }}</td>
+          <td>
+            <ul>
+              <li v-for="material in product.materials" :key="material.materialId">
+                Material: {{ getMaterialName(material.materialId) }} - Quantity: {{ material.quantity }}
+              </li>
+            </ul>
+          </td>
+          <td>{{ getEmployeeName(product.employeeId) }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
+
+
 <style scoped>
 .dashboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .cards-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 20px;
 }
 
 .card {
-  width: 200px;
-  height: 200px;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
-  font-size: 1.2rem;
-  color: white;
-}
-
-.card h2 {
-  margin-bottom: 10px;
-}
-
-.card p {
-  margin-bottom: 20px;
 }
 
 .card button {
-  padding: 10px 20px;
   background-color: #fff;
-  color: #333;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
 }
 
 .card button:hover {

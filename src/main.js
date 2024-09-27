@@ -12,10 +12,6 @@ import 'primeflex/primeflex.css'
 
 // PrimeIcons
 import 'primeicons/primeicons.css'
-
-
-
-
 import router from "./router/index.js";
 import Button from "primevue/button";
 import Card from "primevue/card";
