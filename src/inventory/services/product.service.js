@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
 export class ProductService {
-    resourceEndpoint = 'https://fullstack-fury.free.beeceptor.com/api/v1/products';
+    resourceEndpoint = 'products';
 
     getAll() {
         return http.get(this.resourceEndpoint);
