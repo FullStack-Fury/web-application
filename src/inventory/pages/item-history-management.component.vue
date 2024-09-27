@@ -1,57 +1,62 @@
 <script>
-import {Material} from "../model/material.entity.js";
-import {MaterialService} from "../services/material.service.js";
+import { ItemHistory } from "../model/item-history.entity.js";
+import { ItemHistoryService } from "../services/item-history.service.js";
 import DataManager from "../../shared/components/data-manager.component.vue";
 import MaterialCreateAndEditDialog from "../components/material-create-and-edit.component.vue";
 
-
 export default {
-  name: "material-management",
-  components: {MaterialCreateAndEditDialog, DataManager},
+  name: "item-history-management",
+  components: {
+    DataManager,
+    MaterialCreateAndEditDialog
+  },
+  props: {
+    itemId: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      title: { singular: 'Material', plural: 'Materials' },
-      materials: [],
-      material: new Material({}),
-      selectedMaterials: [],
-      materialService: null,
+      title: { singular: "Material History", plural: "Material Histories" },
+      histories: [],
+      history: new ItemHistory(),
+      selectedHistories: [],
+      historyService: null,
       createAndEditDialogIsVisible: false,
       isEdit: false,
       submitted: false,
-    }
+    };
   },
   methods: {
-
-    //#region Utility Methods
     notifySuccessfulAction(message) {
       this.$toast.add({severity: 'success', summary: 'Success', detail: message, life: 3000});
     },
-    findIndexById(id) {
-      return this.materials.findIndex(material => material.id === id);
+    closeHistory() {
+      this.$emit('close');
     },
-
-    //#endregion
-
-    //#region Event Handlers
+    findIndexById(id) {
+      return this.histories.findIndex(history => history.id === id);
+    },
     onNewItem() {
-      this.material = new Material({});
+      this.history = new ItemHistory({});
       this.isEdit = false;
       this.submitted = false;
       this.createAndEditDialogIsVisible = true;
     },
     onEditItem(item) {
-      this.material = new Material(item);
+      this.history = new ItemHistory(item);
       this.isEdit = true;
       this.submitted = false;
       this.createAndEditDialogIsVisible = true;
     },
     onDeleteItem(item) {
-      this.material = new Material(item);
-      this.deleteMaterial();
+      this.history = new ItemHistory(item);
+      this.deleteHistory();
     },
     onDeleteSelectedItems(selectedItems) {
-      this.selectedMaterials = selectedItems;
-      this.deleteSelectedMaterials();
+      this.selectedHistories = selectedItems;
+      this.deleteSelectedHistories();
     },
     onCancelRequested() {
       this.createAndEditDialogIsVisible = false;
@@ -60,80 +65,73 @@ export default {
     },
     onSaveRequested(item) {
       this.submitted = true;
-      if (this.material.name.trim()) {
+      if (this.history.name.trim()) {
         if (item.id) {
-          this.updateMaterial();
+          this.updateHistory();
         } else {
-          this.createMaterial();
+          this.createHistory();
         }
         this.createAndEditDialogIsVisible = false;
         this.isEdit = false;
       }
     },
-    navigateToItemHistory(itemId) {
-      this.$router.push({
-        name: 'item-history',
-        params: { itemId } // Pasando el ID del material al historial
-      });
-    },
-    //#endregion
-
-    //#region Action Methods
-    createMaterial() {
-      this.materialService.create(this.material).then(response => {
-        let material = new Material(response.data);
-        this.materials.push(material);
-        this.notifySuccessfulAction('Item Created');
+    createHistory() {
+      this.historyService.create(this.history).then(response => {
+        let history = new ItemHistory(response.data);
+        this.histories.push(history);
+        this.notifySuccessfulAction('History Created');
       }).catch(error => console.error(error));
     },
-    updateMaterial() {
-      this.materialService.update(this.material.id, this.material).then(response => {
-        let index = this.findIndexById(this.material.id);
-        this.materials[index] = new Material(response.data);
-        this.notifySuccessfulAction('Item Updated');
+    updateHistory() {
+      this.historyService.update(this.history.id, this.history).then(response => {
+        let index = this.findIndexById(this.history.id);
+        this.histories[index] = new ItemHistory(response.data);
+        this.notifySuccessfulAction('History Updated');
       }).catch(error => console.error(error));
     },
-    deleteMaterial() {
-      this.materialService.delete(this.material.id).then(() => {
-        let index = this.findIndexById(this.material.id);
-        this.materials.splice(index, 1);
-        this.notifySuccessfulAction('item Deleted');
+    deleteHistory() {
+      this.historyService.delete(this.history.id).then(() => {
+        let index = this.findIndexById(this.history.id);
+        this.histories.splice(index, 1);
+        this.notifySuccessfulAction('History Deleted');
       }).catch(error => console.error(error));
     },
-    deleteSelectedMaterials() {
-      this.selectedMaterials.forEach((material) => {
-        this.materialService.delete(material.id).then(() => {
-          this.materials = this.materials.filter((t) => t.id !== material.id);
+    deleteSelectedHistories() {
+      this.selectedHistories.forEach((history) => {
+        this.historyService.delete(history.id).then(() => {
+          this.histories = this.histories.filter((t) => t.id !== history.id);
         });
       });
-      this.notifySuccessfulAction('Items Deleted');
+      this.notifySuccessfulAction('Histories Deleted');
     },
-    //#endregion
+    addMaterialToHistory(material) {
+      const newItem = new ItemHistory(material);
+      this.histories.push(newItem);
+    }
   },
-  //#region Lifecycle Hooks
-
   watch: {
     createAndEditDialogIsVisible(newVal) {
       console.log('Dialog visibility changed:', newVal);
     }
   },
-
   created() {
-    this.materialService = new MaterialService();
-    this.materialService.getAll().then(response => {
-      this.materials = response.data.map(material => new Material(material));
-      console.log(this.materials);
+    this.historyService = new ItemHistoryService();
+    this.historyService.getAll().then(response => {
+      this.histories = response.data.map(history => new ItemHistory(history));
+      console.log(this.histories);
     }).catch(error => console.error(error));
+  },
+  beforeDestroy() {
+    this.$root.$off('material-added', this.addMaterialToHistory);
   }
-
-  //#endregion
-}
+};
 </script>
 
 <template>
   <div class="w-full">
+    <button @click="closeHistory">Close History</button>
     <data-manager :title="title"
-                  v-bind:items="materials"
+                  v-bind:items="histories"
                   v-on:new-item-requested="onNewItem"
                   v-on:edit-item-requested="onEditItem($event)"
                   v-on:delete-item-requested="onDeleteItem($event)"
@@ -144,18 +142,17 @@ export default {
         <pv-column :sortable="true" field="quantity" header="Quantity" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="quantityStatus" header="Quantity Status" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="provider" header="Provider" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="date" header="Date" style="min-width: 12rem"/>
       </template>
     </data-manager>
     <material-create-and-edit-dialog
         :edit="isEdit"
-        :item="material"
+        :item="history"
         :visible="createAndEditDialogIsVisible"
         v-on:cancel-requested="onCancelRequested"
         v-on:save-requested="onSaveRequested($event)"/>
   </div>
-  <button @click="navigateToItemHistory(material.id)">Show History</button>
 </template>
 
 <style scoped>
-
 </style>

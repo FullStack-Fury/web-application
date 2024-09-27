@@ -14,6 +14,42 @@
       "quantity": 21,
       "quantityStatus": "Stock",
       "provider": "Luxu"
+    },
+    {
+      "id": 3,
+      "name": "Alexandrite",
+      "quantity": 4,
+      "quantityStatus": "Low Stock",
+      "provider": "yasssr"
+    },
+    {
+      "id": 4,
+      "name": "Malachite",
+      "quantity": 5,
+      "quantityStatus": "Low Stock",
+      "provider": "YA INSERTA",
+      "quantityToUse": 1
+    },
+    {
+      "id": 5,
+      "name": "Agate",
+      "quantity": 8,
+      "quantityStatus": "Low Stock",
+      "provider": "YASSER"
+    },
+    {
+      "id": 6,
+      "name": "Emerald",
+      "quantity": 77,
+      "quantityStatus": "Stock",
+      "provider": "dfgdgdf"
+    },
+    {
+      "id": 7,
+      "name": "Malachite",
+      "quantity": 10,
+      "quantityStatus": "Low Stock",
+      "provider": "GemZ"
     }
   ],
   "products": [
@@ -53,6 +89,17 @@
           "quantity": 1
         }
       ]
+    },
+    {
+      "id": 7,
+      "name": "anillo malachita",
+      "employeeId": 1,
+      "materials": [
+        {
+          "materialId": 4,
+          "quantity": 1
+        }
+      ]
     }
   ],
   "employees": [
@@ -67,6 +114,71 @@
     {
       "id": 3,
       "name": "Carlos Gómez"
+    }
+  ],
+  "item-history": [
+    {
+      "id": 1,
+      "name": "Diamond",
+      "quantity": 10,
+      "quantityStatus": "Stock",
+      "provider": "Provider A",
+      "date": "2023-10-01",
+      "textareaContent": "Initial stock"
+    },
+    {
+      "id": 2,
+      "name": "Emerald",
+      "quantity": 5,
+      "quantityStatus": "Low Stock",
+      "provider": "Provider B",
+      "date": "2023-10-01",
+      "textareaContent": "Initial stock"
+    },
+    {
+      "name": "Alexandrite",
+      "quantity": 4,
+      "quantityStatus": "Low Stock",
+      "provider": "yasssr",
+      "date": "2024-09-24T05:00:00.000Z",
+      "textareaContent": "prueba",
+      "id": 3
+    },
+    {
+      "name": "Malachite",
+      "quantity": 6,
+      "quantityStatus": "Low Stock",
+      "provider": "YA INSERTA",
+      "date": "2024-09-27T05:00:00.000Z",
+      "textareaContent": "Se ingreso el material para el history",
+      "id": 4
+    },
+    {
+      "name": "Agate",
+      "quantity": 8,
+      "quantityStatus": "Low Stock",
+      "provider": "YASSER",
+      "date": "2024-09-30T05:00:00.000Z",
+      "textareaContent": "prueba3",
+      "id": 5
+    },
+    {
+      "name": "Emerald",
+      "quantity": 77,
+      "quantityStatus": "Stock",
+      "provider": "dfgdgdf",
+      "date": "2024-09-22T05:00:00.000Z",
+      "textareaContent": "gdgdgd",
+      "id": 6
+    },
+    {
+      "name": "Malachite",
+      "quantity": 10,
+      "quantityStatus": "Low Stock",
+      "provider": "GemZ",
+      "date": "2024-09-30T05:00:00.000Z",
+      "textareaContent": "10 gramos de malachita",
+      "id": 7
     }
   ]
 }
