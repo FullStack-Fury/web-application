@@ -64,6 +64,27 @@
       "quantity": 99,
       "quantityStatus": "Stock",
       "provider": "andres"
+    },
+    {
+      "id": 10,
+      "name": "Diamond",
+      "quantity": 5,
+      "quantityStatus": "Low Stock",
+      "provider": "Gem Store"
+    },
+    {
+      "id": 11,
+      "name": "Ruby",
+      "quantity": 7,
+      "quantityStatus": "Low Stock",
+      "provider": "GemApp"
+    },
+    {
+      "id": 12,
+      "name": "Emerald",
+      "quantity": 3,
+      "quantityStatus": "Low Stock",
+      "provider": "GemLink"
     }
   ],
   "products": [
@@ -193,6 +214,24 @@
       "date": "2024-09-28T05:00:00.000Z",
       "textareaContent": "prueba prueba preueba",
       "id": 9
+    },
+    {
+      "name": "Ruby",
+      "quantity": 7,
+      "quantityStatus": "Low Stock",
+      "provider": "GemApp",
+      "date": "2024-09-28T05:00:00.000Z",
+      "textareaContent": "Ingresaron 7 rubies del provedor GemApp ",
+      "id": 10
+    },
+    {
+      "name": "Emerald",
+      "quantity": 3,
+      "quantityStatus": "Low Stock",
+      "provider": "GemLink",
+      "date": "2024-09-27T05:00:00.000Z",
+      "textareaContent": "Se ingresaron 3 emeraldas del provedor GemLink",
+      "id": 11
     }
   ]
 }
