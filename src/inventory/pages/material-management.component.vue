@@ -9,6 +9,7 @@ export default {
   components: {MaterialCreateAndEditDialog, DataManager},
   data() {
     return {
+      date: null,
       title: { singular: 'Material', plural: 'Materials' },
       materials: [],
       material: new Material({}),
@@ -67,6 +68,12 @@ export default {
         this.createAndEditDialogIsVisible = false;
         this.isEdit = false;
       }
+    },
+    navigateToItemHistory(itemId) {
+      this.$router.push({
+        name: 'item-history',
+        params: { itemId } // Pasando el ID del material al historial
+      });
     },
     //#endregion
 
@@ -145,6 +152,7 @@ export default {
         v-on:cancel-requested="onCancelRequested"
         v-on:save-requested="onSaveRequested($event)"/>
   </div>
+  <pv-button @click="navigateToItemHistory(material.id)">Show History</pv-button>
 </template>
 
 <style scoped>

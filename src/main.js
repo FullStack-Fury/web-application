@@ -41,6 +41,7 @@ import DialogService from "primevue/dialogservice";
 import ConfirmationService from "primevue/confirmationservice";
 import ToastService from "primevue/toastservice";
 import MultiSelect from "primevue/multiselect";
+import DatePicker from "primevue/datepicker";
 
 
 // Create app instance
@@ -84,5 +85,7 @@ app.component('pv-button', Button)
     .component('pv-toast', Toast)
     .component('pv-cascade-select', CascadeSelect)
     .component('pv-multi-select', MultiSelect)
+    .component('pv-date-picker', DatePicker)
+    .component('pv-textarea', Textarea)
 
 app.mount('#app')

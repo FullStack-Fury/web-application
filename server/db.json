@@ -3,24 +3,88 @@
     {
       "id": 1,
       "name": "Diamond",
-      "quantity": 0,
+      "quantity": 5,
       "quantityStatus": "Medium Stock",
       "provider": "luxury",
-      "quantityToUse": 5
+      "quantityToUse": 1
     },
     {
       "id": 2,
       "name": "Ruby",
-      "quantity": 11,
+      "quantity": 21,
       "quantityStatus": "Stock",
       "provider": "Luxu"
     },
     {
       "id": 3,
+      "name": "Alexandrite",
+      "quantity": 4,
+      "quantityStatus": "Low Stock",
+      "provider": "yasssr"
+    },
+    {
+      "id": 4,
+      "name": "Malachite",
+      "quantity": 5,
+      "quantityStatus": "Low Stock",
+      "provider": "YA INSERTA",
+      "quantityToUse": 1
+    },
+    {
+      "id": 5,
+      "name": "Agate",
+      "quantity": 8,
+      "quantityStatus": "Low Stock",
+      "provider": "YASSER"
+    },
+    {
+      "id": 6,
       "name": "Emerald",
+      "quantity": 77,
+      "quantityStatus": "Stock",
+      "provider": "dfgdgdf"
+    },
+    {
+      "id": 7,
+      "name": "Malachite",
       "quantity": 10,
       "quantityStatus": "Low Stock",
-      "provider": "luxu"
+      "provider": "GemZ"
+    },
+    {
+      "id": 8,
+      "name": "Emerald",
+      "quantity": 77,
+      "quantityStatus": "Stock",
+      "provider": "VICENTE"
+    },
+    {
+      "id": 9,
+      "name": "Emerald",
+      "quantity": 99,
+      "quantityStatus": "Stock",
+      "provider": "andres"
+    },
+    {
+      "id": 10,
+      "name": "Diamond",
+      "quantity": 5,
+      "quantityStatus": "Low Stock",
+      "provider": "Gem Store"
+    },
+    {
+      "id": 11,
+      "name": "Ruby",
+      "quantity": 7,
+      "quantityStatus": "Low Stock",
+      "provider": "GemApp"
+    },
+    {
+      "id": 12,
+      "name": "Emerald",
+      "quantity": 3,
+      "quantityStatus": "Low Stock",
+      "provider": "GemLink"
     }
   ],
   "products": [
@@ -33,8 +97,7 @@
           "materialId": 1,
           "quantity": 3
         }
-      ],
-      "status": "pendient"
+      ]
     },
     {
       "id": 5,
@@ -43,14 +106,13 @@
       "materials": [
         {
           "materialId": 2,
-          "quantity": 30
+          "quantity": 25
         },
         {
           "materialId": 1,
           "quantity": 15
         }
-      ],
-      "status": "pendient"
+      ]
     },
     {
       "id": 6,
@@ -61,18 +123,16 @@
           "materialId": 1,
           "quantity": 1
         }
-      ],
-      "status": "finish"
+      ]
     },
     {
       "id": 7,
-      "name": "anillo de diamante",
+      "name": "anillo malachita",
       "employeeId": 1,
-      "status": "pendient",
       "materials": [
         {
-          "materialId": 1,
-          "quantity": 5
+          "materialId": 4,
+          "quantity": 1
         }
       ]
     }
@@ -89,6 +149,89 @@
     {
       "id": 3,
       "name": "Carlos Gómez"
+    }
+  ],
+  "item-history": [
+    {
+      "id": 2,
+      "name": "Emerald",
+      "quantity": 5,
+      "quantityStatus": "Low Stock",
+      "provider": "Provider B",
+      "date": "2023-10-01",
+      "textareaContent": "Initial stock"
+    },
+    {
+      "name": "Alexandrite",
+      "quantity": 4,
+      "quantityStatus": "Low Stock",
+      "provider": "yasssr",
+      "date": "2024-09-24T05:00:00.000Z",
+      "textareaContent": "prueba",
+      "id": 3
+    },
+    {
+      "name": "Malachite",
+      "quantity": 6,
+      "quantityStatus": "Low Stock",
+      "provider": "YA INSERTA",
+      "date": "2024-09-27T05:00:00.000Z",
+      "textareaContent": "Se ingreso el material para el history",
+      "id": 4
+    },
+    {
+      "name": "Emerald",
+      "quantity": 77,
+      "quantityStatus": "Stock",
+      "provider": "VICENTE",
+      "date": "2024-09-26T05:00:00.000Z",
+      "textareaContent": "PRUEBA VICENTE",
+      "id": 5
+    },
+    {
+      "name": "Emerald",
+      "quantity": 77,
+      "quantityStatus": "Stock",
+      "provider": "VICENTE",
+      "date": "2024-09-26T05:00:00.000Z",
+      "textareaContent": "PRUEBA VICENTE",
+      "id": 6
+    },
+    {
+      "name": "Agate",
+      "quantity": 55,
+      "quantityStatus": "Stock",
+      "provider": "gg",
+      "date": "2024-09-30T05:00:00.000Z",
+      "textareaContent": "ffff",
+      "id": 8
+    },
+    {
+      "name": "Emerald",
+      "quantity": 99,
+      "quantityStatus": "Stock",
+      "provider": "andres",
+      "date": "2024-09-28T05:00:00.000Z",
+      "textareaContent": "prueba prueba preueba",
+      "id": 9
+    },
+    {
+      "name": "Ruby",
+      "quantity": 7,
+      "quantityStatus": "Low Stock",
+      "provider": "GemApp",
+      "date": "2024-09-28T05:00:00.000Z",
+      "textareaContent": "Ingresaron 7 rubies del provedor GemApp ",
+      "id": 10
+    },
+    {
+      "name": "Emerald",
+      "quantity": 3,
+      "quantityStatus": "Low Stock",
+      "provider": "GemLink",
+      "date": "2024-09-27T05:00:00.000Z",
+      "textareaContent": "Se ingresaron 3 emeraldas del provedor GemLink",
+      "id": 11
     }
   ]
 }

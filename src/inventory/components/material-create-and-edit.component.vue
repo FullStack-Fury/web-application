@@ -1,5 +1,6 @@
 <script>
 import CreateAndEdit from "../../shared/components/create-and-edit.component.vue";
+import { ItemHistoryService } from "../services/item-history.service.js";
 
 export default {
   name: "material-create-and-edit-dialog",
@@ -10,6 +11,7 @@ export default {
   },
   data() {
     return {
+      date: null,
       selectedMaterialStone: null,
       materials: [
         {
@@ -39,7 +41,9 @@ export default {
           ]
         }
       ],
-      submitted: false
+      submitted: false,
+      textareaContent: '',
+      itemHistoryService: new ItemHistoryService()
     };
   },
   watch: {
@@ -52,7 +56,25 @@ export default {
     onSaveRequested() {
       this.submitted = true;
       this.$emit('save-requested', this.item);
+      // Create item history
+      const itemHistory = {
+        name: this.item.name,
+        quantity: this.item.quantity,
+        quantityStatus: this.item.quantityStatus,
+        provider: this.item.provider,
+        date: this.date,
+        textareaContent: this.textareaContent
+      };
+
+      this.itemHistoryService.create(itemHistory)
+          .then(response => {
+            console.log('Item history saved:', response.data);
+          })
+          .catch(error => {
+            console.error('Error saving item history:', error);
+          });
     },
+
     validateQuantity() {
       if (this.item.quantity > 30) {
         this.item.quantityStatus = "Stock";
@@ -95,6 +117,8 @@ export default {
             <pv-input-text id="provider" v-model="item.provider"
                            :class="{ 'p-invalid': submitted && !item.provider }"/>
           </pv-float-label>
+          <pv-date-picker v-model="date" />
+          <pv-textarea v-model="textareaContent"/>
         </div>
       </div>
     </template>
