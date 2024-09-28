@@ -1,0 +1,94 @@
+{
+  "materials": [
+    {
+      "id": 1,
+      "name": "Diamond",
+      "quantity": 0,
+      "quantityStatus": "Medium Stock",
+      "provider": "luxury",
+      "quantityToUse": 5
+    },
+    {
+      "id": 2,
+      "name": "Ruby",
+      "quantity": 11,
+      "quantityStatus": "Stock",
+      "provider": "Luxu"
+    },
+    {
+      "id": 3,
+      "name": "Emerald",
+      "quantity": 10,
+      "quantityStatus": "Low Stock",
+      "provider": "luxu"
+    }
+  ],
+  "products": [
+    {
+      "id": 4,
+      "name": "anillo de diamante",
+      "employeeId": 2,
+      "materials": [
+        {
+          "materialId": 1,
+          "quantity": 3
+        }
+      ],
+      "status": "pendient"
+    },
+    {
+      "id": 5,
+      "name": "pulsera de ruby",
+      "employeeId": 3,
+      "materials": [
+        {
+          "materialId": 2,
+          "quantity": 30
+        },
+        {
+          "materialId": 1,
+          "quantity": 15
+        }
+      ],
+      "status": "pendient"
+    },
+    {
+      "id": 6,
+      "name": "anillo de diamante",
+      "employeeId": 2,
+      "materials": [
+        {
+          "materialId": 1,
+          "quantity": 1
+        }
+      ],
+      "status": "finish"
+    },
+    {
+      "id": 7,
+      "name": "anillo de diamante",
+      "employeeId": 1,
+      "status": "pendient",
+      "materials": [
+        {
+          "materialId": 1,
+          "quantity": 5
+        }
+      ]
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Juan Pérez"
+    },
+    {
+      "id": 2,
+      "name": "María López"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Gómez"
+    }
+  ]
+}
