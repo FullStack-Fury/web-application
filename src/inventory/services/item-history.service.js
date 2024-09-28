@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
 export class ItemHistoryService {
-    resourceEndpoint = '/item-history';
+    resourceEndpoint = 'item-history';
 
     getAll() {
         return http.get(this.resourceEndpoint);
