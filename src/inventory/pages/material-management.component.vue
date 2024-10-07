@@ -138,11 +138,11 @@ export default {
                   v-on:delete-item-requested="onDeleteItem($event)"
                   v-on:delete-selected-items-requested="onDeleteSelectedItems($event)">
       <template #custom-columns>
-        <pv-column :sortable="true" field="id" header="Id" style="min-width: 12rem"/>
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem"/>
-        <pv-column :sortable="true" field="quantity" header="Quantity" style="min-width: 12rem"/>
-        <pv-column :sortable="true" field="quantityStatus" header="Quantity Status" style="min-width: 12rem"/>
-        <pv-column :sortable="true" field="provider" header="Provider" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="id" :header="$t('management.id')" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="name" :header="$t('management.name')" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="quantity" :header="$t('inventory.quantity')" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="quantityStatus" :header="$t('inventory.quantity-status')" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="provider" :header="$t('inventory.provider')" style="min-width: 12rem"/>
       </template>
     </data-manager>
     <material-create-and-edit-dialog
