@@ -4,14 +4,14 @@ import LanguageSwitcher from "./public/components/language-switcher.component.vu
 export default {
   name: 'app',
   components: {LanguageSwitcher},
-  title: 'ACME Learning Center',
+  title: 'GemZ ',
   data() {
     return {
       drawer: false,
       items: [
-        {label: "Management", to: '/management'},
-        {label: 'Inventory', to: '/inventory/materials'},
-        {label: 'Dashboard', to: '/dashboard'}
+        {label: this.$t('navbar.management'), to: '/management'},
+        {label: this.$t('navbar.inventory'), to: '/inventory/materials'},
+        {label: this.$t('navbar.dashboard'), to: '/dashboard'}
       ]
     }
   },
@@ -33,6 +33,7 @@ export default {
         <pv-button class="p-button-text" icon="pi pi-bars" @click="toggleDrawer"/>
         <img class="logo" src="/logo-color.png" alt="logo gem z">
       </template>
+
       <template #center>
         <div class="flex-column">
           <router-link v-for="item in items" :key="item.label" v-slot="{navigate, href}" :to="item.to" custom>
@@ -40,6 +41,7 @@ export default {
           </router-link>
         </div>
       </template>
+      
       <template #end>
         <language-switcher/>
       </template>
