@@ -1,7 +1,7 @@
 {
   "materials": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Diamond",
       "quantity": 5,
       "quantityStatus": "Medium Stock",
@@ -9,14 +9,14 @@
       "quantityToUse": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Ruby",
       "quantity": 21,
       "quantityStatus": "Stock",
       "provider": "Luxu"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Alexandrite",
       "quantity": 4,
       "quantityStatus": "Low Stock",
@@ -85,11 +85,18 @@
       "quantity": 3,
       "quantityStatus": "Low Stock",
       "provider": "GemLink"
+    },
+    {
+      "id": "",
+      "name": "Ruby",
+      "quantity": 10,
+      "quantityStatus": "Low Stock",
+      "provider": "gemZ"
     }
   ],
   "products": [
     {
-      "id": 4,
+      "id": "4",
       "name": "anillo de diamante",
       "employeeId": 2,
       "materials": [
@@ -100,7 +107,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "pulsera de ruby",
       "employeeId": 3,
       "materials": [
@@ -115,7 +122,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "anillo de diamante",
       "employeeId": 2,
       "materials": [
@@ -126,7 +133,7 @@
       ]
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "anillo malachita",
       "employeeId": 1,
       "materials": [
@@ -139,15 +146,15 @@
   ],
   "employees": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Juan Pérez"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "María López"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Carlos Gómez"
     }
   ],
