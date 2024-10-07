@@ -1,3 +1,69 @@
 {
-
+  "navbar": {
+    "management": "Gestión",
+    "inventory": "Inventario",
+    "dashboard": "Tablero"
+  },
+  "management": {
+    "product": "Producto",
+    "id": "ID",
+    "name": "Nombre",
+    "materials": "Materiales",
+    "employees": "Empleados",
+    "status": "Estado",
+    "product-name": "Nombre de producto",
+    "select-materials": "Seleccionar materiales",
+    "enter-product-name": "Ingrese el nombre del producto",
+    "select-employees": "Seleccionar empleados",
+    "select-status": "Seleccionar estado"
+  },
+  "data-manager": {
+    "new": "Nuevo",
+    "delete": "Eliminar",
+    "export": "Exportar",
+    "confirmation": {
+      "header": "Confirmación",
+      "cancel": "Cancelar",
+      "message": {
+        "singular": "¿Está seguro de que desea eliminar el elemento seleccionado?",
+        "plural": "¿Está seguro de que desea eliminar los elementos seleccionados?"
+      }
+    }
+  },
+  "inventory": {
+    "label": "Material",
+    "select-material": "Seleccione un Material",
+    "quantity": "Cantidad",
+    "quantity-status": "Estado de cantidad",
+    "provider": "Proveedor",
+    "date": "Fecha",
+    "note": "Nota",
+    "gemstones-group": "Piedras preciosas",
+    "semiprecious-group": "Piedras semipreciosas",
+    "gemstones": {
+      "diamond": "Diamante",
+      "emerald": "Esmeralda",
+      "ruby": "Rubí",
+      "sapphire": "Zafiro"
+    },
+    "semiprecious": {
+      "agate": "Ágata",
+      "aquamarine": "Aguamarina y otras variedades del berilo",
+      "alexandrite": "Alejandrita",
+      "amethyst": "Amatista",
+      "amber": "Ámbar",
+      "chrysocolla": "Crisocola",
+      "quartz": "Cuarzo y sus variedades",
+      "lapis-lazuli": "Lapislázuli",
+      "malachite": "Malaquita",
+      "obsidian": "Obsidiana",
+      "tiger-eye": "Ojo de tigre"
+    },
+    "stock-status": {
+      "stock": "En Stock",
+      "medium-stock": "Stock Medio",
+      "low-stock": "Stock Bajo",
+      "out-of-stock": "Agotado"
+    }
+  }
 }
