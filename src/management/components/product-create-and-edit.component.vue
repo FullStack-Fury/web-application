@@ -1,20 +1,10 @@
 <script>
 import CreateAndEditDialog from "../../shared/components/create-and-edit.component.vue";
-import InputText from 'primevue/inputtext';
-import MultiSelect from 'primevue/multiselect';
-import InputNumber from 'primevue/inputnumber';
-import CascadeSelect from 'primevue/cascadeselect';
-import Dropdown from 'primevue/dropdown';
 
 export default {
   name: "product-create-and-edit-dialog",
   components: {
     CreateAndEditDialog,
-    'pv-input-text': InputText,
-    'pv-multi-select': MultiSelect,
-    'pv-input-number': InputNumber,
-    'pv-cascade-select': CascadeSelect,
-    'pv-dropdown': Dropdown,
   },
   props: {
     visible: Boolean,
@@ -37,9 +27,6 @@ export default {
     };
   },
   computed: {
-    dialogTitle() {
-      return this.productData.id ? 'Edit Product' : 'New Product';
-    },
     employeeOptions() {
       const departments = {};
       this.employees.forEach(emp => {
@@ -147,9 +134,6 @@ export default {
     onCancelRequested() {
       this.$emit('canceled');
     },
-    onDeleteSelectedItems() {
-      // Implementa la lógica de eliminación o elimina esta función si no es necesaria
-    },
   },
 };
 </script>
@@ -157,28 +141,28 @@ export default {
 <template>
   <create-and-edit-dialog
       :visible="visible"
-      :entityName="dialogTitle"
+      :entityName="$t('management.product')"
       @canceled="onCancelRequested"
       @saved="onSaveRequested"
   >
     <template #content>
       <div class="p-fluid">
         <div class="field">
-          <label for="productName">Product Name</label>
+          <label for="productName" style="margin-right: 10px">{{ $t('management.product-name')}}</label>
           <pv-input-text
               id="productName"
               v-model="productData.name"
-              placeholder="Enter the product name"
+              :placeholder="$t('management.enter-product-name' )"
           />
         </div>
-        <div class="field">
-          <label for="materials">Materials</label>
+        <div class="field" >
+          <label for="materials">{{ $t('management.materials') }} </label>
           <pv-multi-select
               id="materials"
               v-model="selectedMaterials"
               :options="materials"
               option-label="name"
-              placeholder="Select materials"
+              :placeholder=" $t('management.select-materials') "
               @change="onMaterialsChange"
           />
         </div>
@@ -197,7 +181,7 @@ export default {
           <small>Available Quantity: {{ material.quantity + getOriginalQuantityUsed(material) }}</small>
         </div>
         <div class="field">
-          <label for="employee">Employee</label>
+          <label for="employee">{{ $t('management.employees') }}</label>
           <pv-cascade-select
               id="employee"
               v-model="selectedEmployee"
@@ -205,19 +189,19 @@ export default {
               optionLabel="name"
               optionGroupLabel="department"
               :optionGroupChildren="['employees']"
-              placeholder="Select an employee"
+              :placeholder="$t('management.select-employees')"
               @change="onEmployeeChange"
           />
         </div>
         <div class="field">
-          <label for="status">Status</label>
+          <label for="status">{{ $t('management.status') }}</label>
           <pv-dropdown
               id="status"
               v-model="selectedStatus"
               :options="statusOptions"
               optionLabel="label"
               optionValue="value"
-              placeholder="Select a status"
+              :placeholder="$t('management.select-status')"
           />
         </div>
       </div>
@@ -226,5 +210,5 @@ export default {
 </template>
 
 <style scoped>
-/* Estilos opcionales */
+
 </style>
