@@ -26,12 +26,12 @@ export default {
     },
     confirmDeleteSelected() {
       this.$confirm.require({
-        message: `Are you sure you want to delete the selected ${this.title.plural}?`,
-        header: 'Confirmation',
+        message: this.$t('data-manager.confirmation.message.plural'),
+        header:  this.$t('data-manager.confirmation.header'),
         icon: 'pi pi-exclamation-triangle',
         rejectClass: 'p-button-secondary p-button=outlined',
-        rejectLabel: 'Cancel',
-        acceptLabel: 'Delete',
+        rejectLabel: this.$t('data-manager.confirmation.cancel'),
+        acceptLabel:  this.$t('data-manager.delete'),
         acceptClass: 'p-button-danger',
         accept: () => this.$emit('delete-selected-items-requested', this.selectedItems),
         reject: () => {
@@ -46,12 +46,12 @@ export default {
     },
     confirmDeleteItem(item) {
       this.$confirm.require({
-        message: `Are you sure you want to delete the selected ${this.title.singular}?`,
-        header: 'Confirmation',
+        message: this.$t('data-manager.confirmation.message.singular'),
+        header:  this.$t('data-manager.confirmation.header'),
         icon: 'pi pi-exclamation-triangle',
         rejectClass: 'p-button-secondary p-button=outlined',
-        rejectLabel: 'Cancel',
-        acceptLabel: 'Delete',
+        rejectLabel: this.$t('data-manager.confirmation.cancel'),
+        acceptLabel:  this.$t('data-manager.delete'),
         acceptClass: 'p-button-danger',
         accept: () => this.$emit('delete-item-requested', item),
         reject: () => {
@@ -68,17 +68,17 @@ export default {
 <template>
   <pv-toast/>
   <pv-confirm-dialog/>
-  <h3>{{ title.singular }}</h3>
+  <h2 style="text-align: center">{{ $t('management.product') }}</h2>
 
   <!-- Toolbar section -->
-  <pv-toolbar class="mb-4">
+  <pv-toolbar class="mb-5">
     <template #start>
-      <pv-button v-if="showNewAndDeleteButtons" class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
-      <pv-button v-if="showNewAndDeleteButtons" :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete" severity="danger"
+      <pv-button v-if="showNewAndDeleteButtons" class="mr-2" icon="pi pi-plus" :label="$t('data-manager.new')" severity="success" @click="newItem"/>
+      <pv-button v-if="showNewAndDeleteButtons" :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" :label="$t('data-manager.delete')" severity="danger"
                  @click="confirmDeleteSelected"/>
     </template>
     <template #end>
-      <pv-button icon="pi pi-download" label="Export" severity="help" @click="exportToCsv($event)"/>
+      <pv-button icon="pi pi-download" :label="$t('data-manager.export')" severity="help" @click="exportToCsv($event)"/>
     </template>
   </pv-toolbar>
 
