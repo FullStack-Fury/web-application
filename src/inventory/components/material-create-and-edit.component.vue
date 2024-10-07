@@ -1,5 +1,6 @@
 <script>
 import CreateAndEdit from "../../shared/components/create-and-edit.component.vue";
+import { ItemHistoryService } from "../services/item-history.service.js";
 
 export default {
   name: "material-create-and-edit-dialog",
@@ -10,40 +11,39 @@ export default {
   },
   data() {
     return {
+      date: null,
       selectedMaterialStone: null,
       materials: [
         {
-          name: 'Gemstones',  // Grupo de piedras preciosas
+          name: this.$t('inventory.gemstones-group'),  // Grupo de piedras preciosas
           stones: [
-            { name: 'Diamond' },
-            { name: 'Emerald' },
-            { name: 'Ruby' },
-            { name: 'Sapphire' }
+            { name:  this.$t('inventory.gemstones.diamond')}, // Diamante
+            { name: this.$t('inventory.gemstones.emerald') }, // Esmeralda
+            { name: this.$t('inventory.gemstones.ruby') }, // Rubí
+            { name: this.$t('inventory.gemstones.sapphire') } // Zafiro
           ]
         },
         {
-          name: 'Semiprecious Stones',  // Nuevo grupo de piedras semipreciosas
+          name: this.$t('inventory.semiprecious-group'),  // Nuevo grupo de piedras semipreciosas
           stones: [
-            { name: 'Agate' },                   // Ágata
-            { name: 'Aquamarine and other Beryl varieties' },  // Aguamarina y otras variedades del berilo
-            { name: 'Alexandrite' },             // Alejandrita
-            { name: 'Amethyst' },                // Amatista
-            { name: 'Amber' },                   // Ámbar
-            { name: 'Chrysocolla' },             // Crisocola
-            { name: 'Quartz and its varieties' },// Cuarzo y sus variedades
-            { name: 'Lapis lazuli' },            // Lapislázuli
-            { name: 'Malachite' },               // Malaquita
-            { name: 'Obsidian' },                // Obsidiana
-            { name: 'Tiger\'s eye' },            // Ojo de tigre
-
+            { name: this.$t('inventory.semiprecious.agate') },                   // Ágata
+            { name: this.$t('inventory.semiprecious.aquamarine')},  // Aguamarina y otras variedades del berilo
+            { name: this.$t('inventory.semiprecious.alexandrite') }, // Alejandrita
+            { name: this.$t('inventory.semiprecious.amethyst') }, // Amatista
+            { name: this.$t('inventory.semiprecious.amber') }, // Ámbar
+            { name: this.$t('inventory.semiprecious.chrysocolla') }, // Crisocola
+            { name: this.$t('inventory.semiprecious.quartz') }, // Cuarzo y sus variedades
+            { name: this.$t('inventory.semiprecious.lapis-lazuli') }, // Lapislázuli
+            { name: this.$t('inventory.semiprecious.malachite') }, // Malaquita
+            { name: this.$t('inventory.semiprecious.obsidian') }, // Obsidiana
+            { name: this.$t('inventory.semiprecious.tiger-eye') } // Ojo de tigre
           ]
         }
       ],
-      submitted: false
+      submitted: false,
+      textareaContent: '',
+      itemHistoryService: new ItemHistoryService()
     };
-  },
-  watch: {
-    'item.quantity': 'validateQuantity'
   },
   methods: {
     onCancelRequested() {
@@ -52,18 +52,36 @@ export default {
     onSaveRequested() {
       this.submitted = true;
       this.$emit('save-requested', this.item);
+      // Create item history
+      const itemHistory = {
+        name: this.item.name,
+        quantity: this.item.quantity,
+        quantityStatus: this.item.quantityStatus,
+        provider: this.item.provider,
+        date: this.date,
+        textareaContent: this.textareaContent
+      };
+
+      this.itemHistoryService.create(itemHistory)
+          .then(response => {
+            console.log('Item history saved:', response.data);
+          })
+          .catch(error => {
+            console.error('Error saving item history:', error);
+          });
     },
+
     validateQuantity() {
       if (this.item.quantity > 30) {
-        this.item.quantityStatus = "Stock";
+        this.item.quantityStatus = this.$t('inventory.stock-status.stock');
       } else if (this.item.quantity >= 15) {
-        this.item.quantityStatus = "Medium Stock";
+        this.item.quantityStatus = this.$t('inventory.stock-status.medium-stock');
       } else if (this.item.quantity < 15) {
-        this.item.quantityStatus = "Low Stock";
+        this.item.quantityStatus = this.$t('inventory.stock-status.low-stock');
       }
 
       if (this.item.quantity === 0) {
-        this.item.quantityStatus = "Out of Stock";
+        this.item.quantityStatus = this.$t('inventory.stock-status.out-of-stock');
       }
     }
   }
@@ -74,41 +92,44 @@ export default {
   <create-and-edit :entity="item" :visible="visible" entity-name="Material"
                    @canceled="onCancelRequested" @saved="onSaveRequested">
     <template #content>
-      <div class="p-fluid">
-        <div class="field mt-5">
-          <div style="margin-bottom: 30px">
-            <label for="material" class="flex flex-col gap-2" id="material-label">Material</label>
-            <pv-cascade-select id="material" v-model="selectedMaterialStone"
-                               :options="materials" optionLabel="name" optionGroupLabel="name"
-                               :optionGroupChildren="['stones']" style="min-width: 14rem"
-                               placeholder="Select a Material"
-                               @change="item.name = selectedMaterialStone.name"
-                               :class="{ 'p-invalid': submitted && !item.name }" />
-          </div>
-          <pv-float-label class="field-gap">
-            <label for="quantity">Quantity</label>
-            <pv-input-number id="quantity" v-model="item.quantity"
-                             :class="{ 'p-invalid': submitted && !item.quantity }"/>
-          </pv-float-label>
-          <pv-float-label class="field-gap">
-            <label for="provider">Provider</label>
-            <pv-input-text id="provider" v-model="item.provider"
-                           :class="{ 'p-invalid': submitted && !item.provider }"/>
-          </pv-float-label>
+      <div class="p-fluid grid formgrid">
+        <!-- Selección de Material -->
+        <div class="field col-12 md:col-6">
+          <label for="material" id="material-label">{{ $t('inventory.label') }}</label>
+          <pv-cascade-select id="material" v-model="selectedMaterialStone"
+                             :options="materials" optionLabel="name" optionGroupLabel="name"
+                             :optionGroupChildren="['stones']" class="w-full"
+                             :placeholder="$t('inventory.select-material')"
+                             @change="item.name = selectedMaterialStone.name"
+                             :class="{ 'p-invalid': submitted && !item.name }" />
+        </div>
+
+        <!-- Cantidad -->
+        <div class="field col-12 md:col-6">
+          <label for="quantity">{{ $t('inventory.quantity') }}</label>
+          <pv-input-number id="quantity" v-model="item.quantity" class="w-full"
+                           :class="{ 'p-invalid': submitted && !item.quantity }"/>
+        </div>
+
+        <!-- Proveedor -->
+        <div class="field col-12 md:col-6">
+          <label for="provider">{{ $t('inventory.provider') }}</label>
+          <pv-input-text id="provider" v-model="item.provider" class="w-full"
+                         :class="{ 'p-invalid': submitted && !item.provider }"/>
+        </div>
+
+        <!-- Fecha -->
+        <div class="field col-12 md:col-6">
+          <label for="date">{{ $t('inventory.date') }}</label>
+          <pv-date-picker v-model="date" class="w-full" />
+        </div>
+
+        <!-- Notas -->
+        <div class="field col-12">
+          <label for="notes">{{ $t('inventory.note') }}</label>
+          <pv-textarea id="notes" v-model="textareaContent" class="w-full" />
         </div>
       </div>
     </template>
   </create-and-edit>
 </template>
-
-<style scoped>
-.field-gap {
-  margin-bottom: 30px;
-}
-
-#material-label{
-  margin:0 0 5px 10px;
-  font-size: 12px;
-  color: rgb(161, 161, 170);
-}
-</style>

@@ -1,3 +1,69 @@
 {
-
+  "navbar": {
+    "management": "Management",
+    "inventory": "Inventory",
+    "dashboard": "Dashboard"
+  },
+  "management": {
+    "product": "Product",
+    "id": "ID",
+    "name": "Name",
+    "materials": "Materials",
+    "employees": "Employees",
+    "status": "Status",
+    "product-name": "Product Name",
+    "select-materials": "Select Materials",
+    "enter-product-name": "Enter Product Name",
+    "select-employees": "Select Employees",
+    "select-status": "Select Status"
+  },
+  "data-manager": {
+    "new": "New",
+    "delete": "Delete",
+    "export": "Export",
+    "confirmation": {
+      "header": "Confirmation",
+      "cancel": "Cancel",
+      "message": {
+        "singular": "Are you sure you want to delete the selected item?",
+        "plural": "Are you sure you want to delete the selected items?"
+      }
+    }
+  },
+  "inventory": {
+    "label": "Material",
+    "select-material": "Select a Material",
+    "quantity": "Quantity",
+    "quantity-status": "Quantity Status",
+    "provider": "Provider",
+    "date": "Date",
+    "note": "Note",
+    "gemstones-group": "Gemstones",
+    "semiprecious-group": "Semiprecious Stones",
+    "gemstones": {
+      "diamond": "Diamond",
+      "emerald": "Emerald",
+      "ruby": "Ruby",
+      "sapphire": "Sapphire"
+    },
+    "semiprecious": {
+      "agate": "Agate",
+      "aquamarine": "Aquamarine and other Beryl varieties",
+      "alexandrite": "Alexandrite",
+      "amethyst": "Amethyst",
+      "amber": "Amber",
+      "chrysocolla": "Chrysocolla",
+      "quartz": "Quartz and its varieties",
+      "lapis-lazuli": "Lapis Lazuli",
+      "malachite": "Malachite",
+      "obsidian": "Obsidian",
+      "tiger-eye": "Tiger's Eye"
+    },
+    "stock-status": {
+      "stock": "In Stock",
+      "medium-stock": "Medium Stock",
+      "low-stock": "Low Stock",
+      "out-of-stock": "Out of Stock"
+    }
+  }
 }

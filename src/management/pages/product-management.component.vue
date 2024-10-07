@@ -194,9 +194,9 @@ export default {
         @delete-item-requested="onDeleteItem"
     >
       <template #custom-columns>
-        <pv-column :sortable="true" field="id" header="ID" style="min-width: 6rem" />
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem" />
-        <pv-column header="Materials" style="min-width: 20rem">
+        <pv-column :sortable="true" field="id" :header="$t('management.id')" style="min-width: 6rem" />
+        <pv-column :sortable="true" field="name" :header="$t('management.name')" style="min-width: 12rem" />
+        <pv-column :header="$t('management.materials')" style="min-width: 20rem">
           <template #body="slotProps">
             <ul>
               <li v-for="pm in slotProps.data.materials" :key="pm.materialId">
@@ -205,10 +205,8 @@ export default {
             </ul>
           </template>
         </pv-column>
-        <!-- Nueva columna para el empleado -->
-        <pv-column :sortable="true" field="employee.name" header="Employee" style="min-width: 12rem" />
-        <!-- Nueva columna para el estado -->
-        <pv-column :sortable="true" field="status" header="Status" style="min-width: 12rem" />
+        <pv-column :sortable="true" field="employee.name" :header="$t('management.employees')" style="min-width: 12rem" />
+        <pv-column :sortable="true" field="status" :header="$t('management.status')" style="min-width: 12rem" />
       </template>
     </data-manager>
 
@@ -220,10 +218,10 @@ export default {
         :employees="employees"
         @canceled="onCancelRequested"
         @saved="onSaveRequested"
+
     />
   </div>
 </template>
 
 <style scoped>
-/* Estilos opcionales */
 </style>

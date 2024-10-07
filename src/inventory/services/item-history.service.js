@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
-export class ProductService {
-    resourceEndpoint = 'products';
+export class ItemHistoryService {
+    resourceEndpoint = 'item-history';
 
     getAll() {
         return http.get(this.resourceEndpoint);
@@ -11,12 +11,12 @@ export class ProductService {
         return http.get(`${this.resourceEndpoint}/${id}`);
     }
 
-    create(productResource) {
-        return http.post(this.resourceEndpoint, productResource);
+    create(itemHistoryResource) {
+        return http.post(this.resourceEndpoint, itemHistoryResource);
     }
 
-    update(id, productResource) {
-        return http.put(`${this.resourceEndpoint}/${id}`, productResource);
+    update(id, itemHistoryResource) {
+        return http.put(`${this.resourceEndpoint}/${id}`, itemHistoryResource);
     }
 
     delete(id) {
